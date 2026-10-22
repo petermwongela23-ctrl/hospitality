@@ -1,0 +1,19 @@
+# Local database files may contain health records
+backend/*.sqlite3
+backend/*.sqlite
+backend/*.db
+backend/*.sqlite3-*
+backend/*.sqlite-*
+
+# Python temporary files
+__pycache__/
+*.py[cod]
+
+# Local secrets and environment settings
+.env
+.env.*
+!.env.example
+
+# Dependencies and editor files
+node_modules/
+.vscode/

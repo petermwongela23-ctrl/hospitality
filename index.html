@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b5d54">
+  <meta name="description" content="Offline-first community health worker visit records.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Afya Field Notes</title>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Afya Field Notes home">
+      <span class="brand-mark" aria-hidden="true">+</span>
+      <span><strong>Afya</strong><small>FIELD NOTES</small></span>
+    </a>
+    <div id="network-status" class="network-status" role="status" aria-live="polite">
+      <span class="status-dot" aria-hidden="true"></span><span id="network-label">CHECKING</span>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">COMMUNITY HEALTH • VISIT RECORDS</p>
+      <h1 id="page-title">A visit, carefully recorded.</h1>
+      <p class="intro-copy">Your record is saved on this device first. It can sync when a connection is available.</p>
+    </section>
+
+    <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+
+    <section class="card form-card" aria-labelledby="form-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">NEW RECORD</p><h2 id="form-title">Home visit details</h2></div>
+        <span class="local-first"><span aria-hidden="true">●</span> Saves on device</span>
+      </div>
+      <form id="visit-form" novalidate>
+        <div class="form-grid">
+          <label>CHW ID
+            <input name="chw_id" type="text" placeholder="e.g. CHW-KKG-04" maxlength="80" autocomplete="off" required>
+          </label>
+          <label>Village or cluster
+            <input name="village_name" type="text" placeholder="e.g. Shibuye" maxlength="120" required>
+          </label>
+          <label class="span-2">Patient full name
+            <input name="patient_name" type="text" placeholder="Enter the patient's name" minlength="2" maxlength="160" autocomplete="off" required>
+          </label>
+          <label>Visit type
+            <select name="visit_type" required>
+              <option value="">Choose a visit type</option>
+              <option>Maternal</option><option>Child</option><option>General</option>
+            </select>
+          </label>
+          <label>Urgency
+            <select name="urgency_level" required>
+              <option value="">Choose urgency</option>
+              <option>Routine</option><option>Urgent</option><option>Emergency</option>
+            </select>
+          </label>
+          <label>Blood pressure
+            <input name="vitals_bp" type="text" inputmode="numeric" placeholder="120/80" pattern="[0-9]{2,3}/[0-9]{2,3}" maxlength="7" required>
+            <span class="field-hint">Use systolic/diastolic, for example 120/80</span>
+          </label>
+          <label>Temperature (°C)
+            <input name="vitals_temp" type="number" inputmode="decimal" placeholder="36.8" min="35" max="43" step="0.1" required>
+            <span class="field-hint">Enter a value from 35.0 to 43.0</span>
+          </label>
+          <label class="span-2">Visit notes <span class="optional">Optional</span>
+            <textarea name="visit_notes" rows="3" maxlength="1000" placeholder="Brief notes from the visit"></textarea>
+          </label>
+        </div>
+        <div class="form-footer">
+          <p class="privacy-note"><span aria-hidden="true">▣</span> Use fictional details for this demo.</p>
+          <button class="button button-primary" type="submit"><span aria-hidden="true">＋</span> Save visit</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="queue-section" aria-labelledby="queue-title">
+      <div class="queue-heading">
+        <div><p class="eyebrow">THIS DEVICE</p><h2 id="queue-title">Saved records <span id="record-count" class="count-pill">0</span></h2></div>
+        <button id="sync-button" class="button button-secondary" type="button"><span aria-hidden="true">↻</span> Sync queue</button>
+      </div>
+      <div class="queue-summary">
+        <span><i class="summary-dot pending-dot"></i><strong id="pending-count">0</strong> waiting to sync</span>
+        <span id="server-status" class="server-status">Checking server…</span>
+      </div>
+      <div id="record-list" class="record-list" aria-live="polite">
+        <div class="empty-state"><span class="empty-icon" aria-hidden="true">▤</span><strong>No visits saved yet</strong><span>Saved visits will appear here.</span></div>
+      </div>
+      <p class="offline-tip">If you lose your connection, keep recording. Pending visits stay on this device and can be sent later.</p>
+    </section>
+
+    <footer class="page-footer">AFYA FIELD NOTES <span>•</span> DEMO PROTOTYPE</footer>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>
